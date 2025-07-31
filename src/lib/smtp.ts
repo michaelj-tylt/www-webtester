@@ -18,8 +18,8 @@ export async function sendDemoRequest(data: DemoRequestData) {
   const { name, email, revenue, employees, automation, theme } = data;
   
   return await postmarkClient.sendEmail({
-    From: 'hello@whytylt.com',
-    To: 'hello+ent-sales@whytylt.com',
+    From: process.env.NOTIFICATION_EMAIL!,
+    To: process.env.NOTIFICATION_EMAIL!,
     Subject: `Enterprise Sales Request from ${name}`,
     HtmlBody: `
       <h2>New Enterprise Sales Request</h2>
