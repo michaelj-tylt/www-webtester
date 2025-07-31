@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import * as postmark from 'postmark';
+import { sendDemoRequest } from '@/lib/smtp';
 
 export async function POST(request: Request) {
   const data = await request.json();
@@ -25,37 +25,13 @@ export async function POST(request: Request) {
   
   // Send email notification
   try {
-    const token = process.env.POSTMARK_SERVER_TOKEN;
-    if (!token) {
-      throw new Error('POSTMARK_SERVER_TOKEN environment variable is not set');
-    }
-    
-    const client = new postmark.ServerClient(token);
-    
-    const notificationEmail = process.env.NOTIFICATION_EMAIL!;
-    
-    const result = await client.sendEmail({
-      From: notificationEmail,
-      To: notificationEmail,
-      Subject: 'New Contact Form Submission',
-      HtmlBody: `
-<h2>New Contact Form Submission</h2>
-<p><strong>Name:</strong> ${data.name}</p>
-<p><strong>Email:</strong> ${data.email}</p>
-<p><strong>Revenue:</strong> ${data.revenue}</p>
-<p><strong>Employees:</strong> ${data.employees}</p>
-<p><strong>Automation Needs:</strong> ${data.automation}</p>
-      `,
-      TextBody: `
-New Contact Form Submission
-
-Name: ${data.name}
-Email: ${data.email}
-Revenue: ${data.revenue}
-Employees: ${data.employees}
-Automation Needs: ${data.automation}
-      `,
-      MessageStream: 'outbound'
+    const result = await sendDemoRequest({
+      name: data.name,
+      email: data.email,
+      revenue: data.revenue,
+      employees: data.employees,
+      automation: data.automation,
+      theme: data.theme || 'Unknown'
     });
 
     console.log('Email sent successfully via Postmark:', result.MessageID);

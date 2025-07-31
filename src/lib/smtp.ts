@@ -2,7 +2,7 @@ import * as postmark from 'postmark';
 
 // Initialize Postmark client
 export const postmarkClient = new postmark.ServerClient(
-  process.env.POSTMARK_SERVER_TOKEN || ''
+  process.env.POSTMARK_TOKEN || ''
 );
 
 export interface DemoRequestData {
