@@ -1,0 +1,64 @@
+{
+  "slides": [
+    {
+      "slide": 1,
+      "message": "Write your tests in plain english. No need for expensive programmers and headless browsers."
+    },
+    {
+      "slide": 2,
+      "message": "Run 1 test or multiple tests. Tag related tests and run them together."
+    },
+    {
+      "slide": 3,
+      "message": "The Agent is a powerful model that browses the website locally on your computer using its own virtual desktop."
+    },
+    {
+      "slide": 4,
+      "message": "Here we are going to test the booking process of Airbnb and we do it in an incog window to clear cookies and sessions."
+    },
+    {
+      "slide": 5,
+      "message": "Tylt navigates and types into a real web browser, just like your customers do!"
+    },
+    {
+      "slide": 6,
+      "message": "Tylt can scroll, click, open tabs, and type! Its also got a bag of customizable tools to do new things."
+    },
+    {
+      "slide": 7,
+      "message": "Tylt can handle popups and other obstacles that makes traditional testing difficult."
+    },
+    {
+      "slide": 8,
+      "message": "As you can see, tylt handled the unexpected popup and now continue onto its objective"
+    },
+    {
+      "slide": 9,
+      "message": "Now that it has arrived at the booking page, it can use the details from the test to book a date"
+    },
+    {
+      "slide": 10,
+      "message": "See how Tylt uses the real web interface to interact with the web browser. Its not using the DOM or any selectors!"
+    },
+    {
+      "slide": 12,
+      "message": "Tylt is also a great way to do usability and accessibility testing on your websites and web applications."
+    },
+    {
+      "slide": 13,
+      "message": "If Tylt cant use a page or section from your webiste or app, then there is a serious problem. Set Tylt up to send emails if critical tests fail!"
+    },
+    {
+      "slide": 15,
+      "message": "Tylt can also make choices for you, so you dont have to describe every single step in detail. Just give it the general objective and Tylt can figure out th in-betweens."
+    },
+    {
+      "slide": 18,
+      "message": "Here you can see Tylt scrolled down to the Reserve button after filling out the form. Time to see if the test passes!"
+    },
+    {
+      "slide": 19,
+      "message": "And as you can see, this test passed with Flying colors and we can read the detailed test report. We can also set up Tylt to connect and report to email, databases, web apis and more!"
+    }
+  ]
+}
