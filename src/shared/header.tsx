@@ -50,7 +50,7 @@ export function Header({ scrolled = false }: HeaderProps) {
           }`}
         >
           <a
-            href="https://github.com/WhyTylt/tylt-app/archive/refs/tags/v0.0.70.zip"
+            href="#download"
             className={`text-white hover:text-orange-400 transition-colors duration-200 relative ${
               scrolled ? "text-sm" : "text-base"
             }`}
