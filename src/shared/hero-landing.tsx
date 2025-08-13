@@ -1,4 +1,3 @@
-import { Section } from "@/shared/section";
 import { AirbnbSlideshow } from "@/shared/airbnb-slideshow";
 // import { DemoButton } from "@/shared/demo-button";
 // import Image from "next/image";
@@ -13,7 +12,7 @@ interface HeroProps {
   containerRef: RefObject<HTMLDivElement | null>;
 }
 
-export function Hero({ primaryText, secondaryText, tertiaryText, description, containerRef }: HeroProps) {
+export function Hero({ primaryText, secondaryText, tertiaryText, description }: Omit<HeroProps, 'containerRef'>) {
   const [showScreenshot, setShowScreenshot] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
 

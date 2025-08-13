@@ -1,18 +1,15 @@
 'use client';
-import { useRef } from 'react';
 import { Header } from '@/shared/header';
 import { Footer } from '@/shared/footer';
 import { Section } from '@/shared/section';
 import { Hero } from '@/shared/hero-landing';
-import { DownloadButton } from '@/shared/download-button';
 // import { DemoRequestContent } from '@/shared/demo-request';
 import PixelBackground from '@/shared/react-bits/Backgrounds/PixelBackground/PixelBackground';
 import Aurora from '@/shared/react-bits/Backgrounds/Aurora/Aurora';
-import { DownloadSection } from '@/shared/download-section';
-import { FaWindows, FaApple, FaLinux } from 'react-icons/fa';
+import { FaWindows, FaApple } from 'react-icons/fa';
+import { SiLinux } from 'react-icons/si';
 
 export default function HomePage() {
-  const containerRef = useRef<HTMLDivElement>(null);
 
   return (
     <div className="min-h-screen w-full relative">
@@ -50,7 +47,6 @@ export default function HomePage() {
               secondaryText="Tylt interracts with your web applications the same way your users do, through a real browser."
               description=""
               audience="enterprise"
-              containerRef={containerRef}
             />
           </Section>
         </div>
@@ -108,7 +104,7 @@ export default function HomePage() {
                       <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/50 hover:border-orange-400/50 transition-all duration-300 cursor-pointer group">
                         <div className="flex items-center space-x-4">
                           <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-lg flex items-center justify-center">
-                            <FaLinux size={24} className="text-white" />
+                            <SiLinux size={24} className="text-white" />
                           </div>
                           <div className="flex-1">
                             <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors">Linux</h3>
@@ -193,7 +189,7 @@ export default function HomePage() {
                     {/* Problem 1 */}
                     <div className="space-y-3">
                       <h3 className="text-xl font-bold text-blue-200">Headless Testing is Fake Testing</h3>
-                      <p className="text-base text-zinc-300 leading-relaxed">Your customers don't use headless browsers. They use real Chrome, Safari, and Firefox with real rendering, real JavaScript, and real user interactions.</p>
+                      <p className="text-base text-zinc-300 leading-relaxed">Your customers don&apos;t use headless browsers. They use real Chrome, Safari, and Firefox with real rendering, real JavaScript, and real user interactions.</p>
                     </div>
                     
                     <div className="border-t border-zinc-700/50"></div>
@@ -217,7 +213,7 @@ export default function HomePage() {
                     {/* Problem 4 */}
                     <div className="space-y-3">
                       <h3 className="text-xl font-bold text-purple-200">No Intelligence or Adaptation</h3>
-                      <p className="text-base text-zinc-300 leading-relaxed">Traditional tools can't handle popups, changed text, moved buttons, network errors, or site redesigns. One small change breaks everything.</p>
+                      <p className="text-base text-zinc-300 leading-relaxed">Traditional tools can&apos;t handle popups, changed text, moved buttons, network errors, or site redesigns. One small change breaks everything.</p>
                     </div>
                   </div>
                 </div>
@@ -262,7 +258,7 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
                   <div className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-800/60 rounded-2xl p-8 backdrop-blur-sm border border-zinc-700/50 hover:border-purple-500/30 transition-all duration-300 h-full flex flex-col">
                     <h3 className="text-2xl lg:text-3xl font-bold text-purple-200 mb-6">Plain English Instructions</h3>
-                    <p className="text-lg text-zinc-300 leading-relaxed flex-1">Write tests in plain English. No code, no selectors, no technical syntax. Just describe what you want tested like you're talking to a person.</p>
+                    <p className="text-lg text-zinc-300 leading-relaxed flex-1">Write tests in plain English. No code, no selectors, no technical syntax. Just describe what you want tested like you&apos;re talking to a person.</p>
                   </div>
                 </div>
                 
@@ -271,7 +267,7 @@ export default function HomePage() {
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
                   <div className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-800/60 rounded-2xl p-8 backdrop-blur-sm border border-zinc-700/50 hover:border-blue-500/30 transition-all duration-300 h-full flex flex-col">
                     <h3 className="text-2xl lg:text-3xl font-bold text-blue-200 mb-6">Intelligent & Adaptive</h3>
-                    <p className="text-lg text-zinc-300 leading-relaxed flex-1">Tylt overcomes popups, changed text, moved buttons, network errors, and even whole site redesigns. It's an intelligent agent, not a brittle script.</p>
+                    <p className="text-lg text-zinc-300 leading-relaxed flex-1">Tylt overcomes popups, changed text, moved buttons, network errors, and even whole site redesigns. It&apos;s an intelligent agent, not a brittle script.</p>
                   </div>
                 </div>
               </div>
@@ -302,11 +298,11 @@ export default function HomePage() {
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-blue-200">Before Tylt</h3>
                   <div className="bg-black/60 rounded-lg p-6 font-mono text-base space-y-3 border border-zinc-700/50">
-                    <p className="text-zinc-300">await page.locator('[data-testid="login-button"]').click();</p>
-                    <p className="text-zinc-300">await page.fill('#username-input-field-id', "user@test.com");</p>
-                    <p className="text-zinc-300">await page.fill('#password-input-field-id', "password123");</p>
-                    <p className="text-zinc-300">await page.click('[data-testid="submit-button"]');</p>
-                    <p className="text-zinc-300">await expect(page.locator('.welcome-message')).toBeVisible();</p>
+                    <p className="text-zinc-300">await page.locator(&apos;[data-testid=&quot;login-button&quot;]&apos;).click();</p>
+                    <p className="text-zinc-300">await page.fill(&apos;#username-input-field-id&apos;, &quot;user@test.com&quot;);</p>
+                    <p className="text-zinc-300">await page.fill(&apos;#password-input-field-id&apos;, &quot;password123&quot;);</p>
+                    <p className="text-zinc-300">await page.click(&apos;[data-testid=&quot;submit-button&quot;]&apos;);</p>
+                    <p className="text-zinc-300">await expect(page.locator(&apos;.welcome-message&apos;)).toBeVisible();</p>
                   </div>
                 </div>
                 
@@ -315,8 +311,8 @@ export default function HomePage() {
                   <h3 className="text-xl font-semibold text-purple-200">After Tylt</h3>
                   <div className="bg-black/60 rounded-lg p-6 font-mono text-base space-y-3 border border-zinc-700/50">
                     <p className="text-zinc-300">Go to https://pageurl.domain</p>
-                    <p className="text-zinc-300">Enter "user@test.com" as the username</p>
-                    <p className="text-zinc-300">Enter "password123" as the password</p>
+                    <p className="text-zinc-300">Enter &quot;user@test.com&quot; as the username</p>
+                    <p className="text-zinc-300">Enter &quot;password123&quot; as the password</p>
                     <p className="text-zinc-300">Click login</p>
                     <p className="text-zinc-300">Verify the welcome message appears</p>
                   </div>
