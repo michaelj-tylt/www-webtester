@@ -16,13 +16,14 @@ interface AirbnbSlideshowProps {
   speed?: number; // Speed in seconds
 }
 
-export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProps) {
+export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProps) {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [slidesData, setSlidesData] = useState<SlidesData | null>(null);
   const [currentMessage, setCurrentMessage] = useState('');
   const [speed, setSpeed] = useState(initialSpeed);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -63,7 +64,9 @@ export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProp
   }, [currentSlide, slidesData, currentMessage]);
 
   useEffect(() => {
-    // Auto-advance slides using the speed prop
+    // Auto-advance slides using the speed prop, but only if not paused
+    if (isPaused) return;
+    
     const interval = setInterval(() => {
       setCurrentSlide(prev => {
         if (prev >= 19) return 1; // Loop back to start
@@ -72,19 +75,22 @@ export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProp
     }, speed * 1000);
 
     return () => clearInterval(interval);
-  }, [speed]);
+  }, [speed, isPaused]);
 
   useEffect(() => {
-    // Handle escape key for fullscreen
+    // Handle keyboard events
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isFullscreen) {
-        setIsFullscreen(false);
+      if (event.key === 'Escape') {
+        if (isFullscreen) {
+          setIsFullscreen(false);
+        }
+      } else if (event.key === ' ' || event.code === 'Space') {
+        event.preventDefault();
+        setIsPaused(prev => !prev);
       }
     };
 
-    if (isFullscreen) {
-      document.addEventListener('keydown', handleKeyDown);
-    }
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
@@ -137,7 +143,8 @@ export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProp
       <div className="flex flex-col space-y-4">
         <div 
           className="relative overflow-hidden rounded-lg shadow-xl cursor-pointer h-48 sm:h-64 md:h-72 lg:h-80 xl:h-96 bg-zinc-800" 
-          onClick={() => setIsFullscreen(true)}
+          onClick={() => setIsPaused(prev => !prev)}
+          onTouchEnd={() => setIsPaused(prev => !prev)}
         >
           <Image
             key={currentSlide}
@@ -151,7 +158,18 @@ export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProp
             onError={() => console.error('Image failed to load:', getImagePath(currentSlide))}
           />
           <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-3 py-2 rounded text-sm z-10 pointer-events-none">
-            Click to expand
+            {isPaused ? 'Click to play' : 'Click to pause'}
+          </div>
+          <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-white px-3 py-2 rounded text-sm z-10 cursor-pointer"
+               onClick={(e) => {
+                 e.stopPropagation();
+                 setIsFullscreen(true);
+               }}
+               onTouchEnd={(e) => {
+                 e.stopPropagation();
+                 setIsFullscreen(true);
+               }}>
+            🔍 Expand
           </div>
         </div>
         {renderControls()}
@@ -162,7 +180,8 @@ export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProp
         <div 
           className="fixed inset-0 bg-zinc-900"
           style={{ zIndex: 2147483647 }}
-          onClick={() => setIsFullscreen(false)}
+          onClick={() => setIsPaused(prev => !prev)}
+          onTouchEnd={() => setIsPaused(prev => !prev)}
         >
           <button
             onClick={(e) => {
@@ -177,16 +196,21 @@ export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProp
           
           <div className="w-full h-screen flex flex-col">
             <div className="flex-1 flex items-center justify-center">
-              <Image
-                key={currentSlide}
-                src={getImagePath(currentSlide)}
-                alt={`Airbnb demo step ${currentSlide}`}
-                width={1920}
-                height={1080}
-                className="w-full h-auto max-h-full object-contain"
-                unoptimized
-                priority
-              />
+              <div className="relative">
+                <Image
+                  key={currentSlide}
+                  src={getImagePath(currentSlide)}
+                  alt={`Airbnb demo step ${currentSlide}`}
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto max-h-full object-contain"
+                  unoptimized
+                  priority
+                />
+                <div className="absolute top-4 right-4 bg-black bg-opacity-70 text-white px-4 py-2 rounded text-base z-10 pointer-events-none">
+                  {isPaused ? 'Click to play' : 'Click to pause'}
+                </div>
+              </div>
             </div>
             
             <div 

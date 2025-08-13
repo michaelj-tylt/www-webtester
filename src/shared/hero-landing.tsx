@@ -82,7 +82,7 @@ export function Hero({ primaryText, secondaryText, tertiaryText, description }: 
           {/* Subtle glow effect behind demo */}
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
           <div className="relative bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 rounded-2xl p-6 backdrop-blur-sm border border-zinc-700/50">
-            <AirbnbSlideshow speed={2} />
+            <AirbnbSlideshow speed={3} />
           </div>
         </div>
       </div>
