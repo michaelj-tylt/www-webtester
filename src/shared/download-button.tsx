@@ -6,7 +6,6 @@ import { Monitor, Apple } from 'lucide-react';
 export function DownloadButton() {
   const [detectedOs, setDetectedOs] = useState<'windows' | 'mac' | 'linux' | null>(null);
   const [selectedOs, setSelectedOs] = useState<'windows' | 'mac' | 'linux'>('windows');
-  const [isExpanded, setIsExpanded] = useState(false);
   const posthog = usePostHog();
 
   useEffect(() => {
@@ -59,16 +58,19 @@ export function DownloadButton() {
     }
   ];
 
+  // Disabled download click handler - will be enabled on release
   const handleDownloadClick = (platform: 'windows' | 'mac' | 'linux') => {
+    // Still track the click event even though download is disabled
     posthog?.capture('download_button_clicked', {
       os: platform,
       detected_os: detectedOs,
-      location: 'pricing_section'
+      location: 'download_section',
+      status: 'disabled_pre_release'
     });
+    // Do nothing else - buttons are disabled until release date
   };
 
   const selectedPlatform = platforms.find(p => p.id === selectedOs) || platforms[0];
-  const otherPlatforms = platforms.filter(p => p.id !== selectedOs);
 
   return (
     <div className="relative">
@@ -77,6 +79,7 @@ export function DownloadButton() {
         <div className="absolute inset-0 bg-gradient-to-r from-zinc-600/10 to-zinc-500/10 rounded-xl blur-lg opacity-50"></div>
         <div
           className={`relative block bg-gradient-to-br from-zinc-800/40 to-zinc-700/30 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/30 transition-all duration-300 cursor-not-allowed opacity-60`}
+          onClick={() => handleDownloadClick(selectedPlatform.id)}
         >
           <div className="flex items-center space-x-4">
             <div className={`w-12 h-12 bg-gradient-to-br ${selectedPlatform.gradient} rounded-lg flex items-center justify-center`}>
