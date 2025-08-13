@@ -36,7 +36,7 @@ export default function HomePage() {
       <Header scrolled={false} />
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col gap-16 sm:gap-24 lg:gap-0">
+      <div className="relative z-10 flex flex-col gap-24 sm:gap-32 lg:gap-0">
         {/* Page 1: Hero */}
         <div 
           className="min-h-screen w-full flex items-center justify-center relative text-white snap-start"
@@ -153,7 +153,7 @@ export default function HomePage() {
         </div>
 
         {/* Page 3: Problems */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+        <div className="w-full flex items-center justify-center relative text-white snap-start lg:min-h-screen">
           <Section>
             <div className="relative flex flex-col lg:flex-row items-center justify-center">
             {/* Text section */}
@@ -226,11 +226,11 @@ export default function HomePage() {
         </div>
 
         {/* Page 4: Solution */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+        <div className="w-full flex items-center justify-center relative text-white snap-start lg:min-h-screen">
           <Section>
             <div className="space-y-8 sm:space-y-12 lg:space-y-16">
               {/* Main headline with gradient */}
-              <div className="text-left lg:text-center space-y-6">
+              <div className="text-left space-y-6">
                 <h2 className="section-heading">
                   <span className="section-gradient-primary">
                     Tylt: Vision-Based Testing
@@ -240,7 +240,7 @@ export default function HomePage() {
                     That Actually Works
                   </span>
                 </h2>
-                <p className="section-subheading lg:mx-auto max-w-4xl">
+                <p className="section-subheading  max-w-4xl">
                   Tylt can actually SEE your website and navigate it using a real browser on a real desktop using a mouse and keyboard - just like a real customer would.
                 </p>
               </div>
@@ -279,11 +279,11 @@ export default function HomePage() {
         </div>
 
         {/* Page 5: Code Example */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+        <div className="w-full flex items-center justify-center relative text-white snap-start lg:min-h-screen">
           <Section>
             <div className="space-y-8 sm:space-y-12 lg:space-y-16">
               {/* Main headline with gradient */}
-              <div className="text-left lg:text-center space-y-6">
+              <div className="text-left space-y-6">
                 <h2 className="section-heading">
                   <span className="section-gradient-primary">
                     Real Browser Testing
@@ -323,8 +323,8 @@ export default function HomePage() {
               </div>
               
               {/* Bottom text */}
-              <div className="text-left lg:text-center">
-                <p className="section-subheading lg:mx-auto max-w-4xl">
+              <div className="text-left">
+                <p className="section-subheading  max-w-4xl">
                   Tylt handles the rest - finding elements visually, dealing with loading states, and adapting to changes automatically.
                 </p>
               </div>
@@ -333,7 +333,7 @@ export default function HomePage() {
         </div>
 
         {/* Page 6: Pricing */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+        <div className="w-full flex items-center justify-center relative text-white snap-start lg:min-h-screen">
           <Section>
             <div className="relative flex flex-col lg:flex-row items-center justify-center">
             {/* Text section */}
@@ -427,7 +427,7 @@ export default function HomePage() {
         </div>
 
         {/* Footer */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+        <div className="w-full flex items-center justify-center relative text-white snap-start lg:min-h-screen">
           <Section>
             <Footer />
           </Section>

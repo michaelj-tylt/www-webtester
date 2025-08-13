@@ -78,10 +78,10 @@ export function Hero({ primaryText, secondaryText, tertiaryText, description }: 
       
       {/* Demo section */}
       <div className={`flex-1 w-full transition-all duration-700 ${showScreenshot ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}>
-        <div className="relative w-full sm:max-w-lg sm:mx-auto lg:max-w-none">
+        <div className="relative w-full">
           {/* Subtle glow effect behind demo - hidden on mobile */}
           <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
-          <div className="relative sm:bg-gradient-to-br sm:from-zinc-900/50 sm:to-zinc-800/30 sm:rounded-2xl p-0 sm:p-6 sm:backdrop-blur-sm sm:border sm:border-zinc-700/50">
+          <div className="relative sm:bg-gradient-to-br sm:from-zinc-900/50 sm:to-zinc-800/30 sm:rounded-2xl sm:backdrop-blur-sm sm:border sm:border-zinc-700/50">
             <AirbnbSlideshow speed={3} />
           </div>
         </div>
