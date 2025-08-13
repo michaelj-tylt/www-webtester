@@ -71,68 +71,38 @@ export function DownloadButton() {
   const otherPlatforms = platforms.filter(p => p.id !== selectedOs);
 
   return (
-    <div 
-      className="relative"
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
-      onClick={() => setIsExpanded(!isExpanded)}
-    >
+    <div className="relative">
       {/* Selected platform - always visible */}
-      <div className="relative group">
-        <div className={`absolute inset-0 bg-gradient-to-r ${selectedPlatform.hoverGradient} rounded-xl blur-lg group-hover:blur-xl transition-all duration-300`}></div>
-        <a
-          href="#"
-          className={`relative block bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/50 ${selectedPlatform.hoverBorder} transition-all duration-300 cursor-pointer group`}
-          onClick={(e) => {
-            e.stopPropagation();
-            handleDownloadClick(selectedPlatform.id);
-          }}
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-zinc-600/10 to-zinc-500/10 rounded-xl blur-lg opacity-50"></div>
+        <div
+          className={`relative block bg-gradient-to-br from-zinc-800/40 to-zinc-700/30 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/30 transition-all duration-300 cursor-not-allowed opacity-60`}
         >
           <div className="flex items-center space-x-4">
             <div className={`w-12 h-12 bg-gradient-to-br ${selectedPlatform.gradient} rounded-lg flex items-center justify-center`}>
               {selectedPlatform.icon}
             </div>
             <div className="flex-1">
-              <h3 className={`text-lg font-bold text-white ${selectedPlatform.textHover} transition-colors`}>
+              <h3 className="text-lg font-bold text-zinc-400">
                 {selectedPlatform.name}
               </h3>
+              <p className="text-sm text-zinc-500 mt-1">Coming Soon</p>
             </div>
-            <div className="text-zinc-400">
-              {isExpanded ? '▲' : '▼'}
+            <div className="platform-badge bg-zinc-600 text-zinc-300 text-xs px-3 py-1 rounded-full font-medium">
+              Disabled
             </div>
           </div>
-        </a>
+        </div>
       </div>
 
-      {/* Other platforms - show on hover/expand */}
-      {isExpanded && (
-        <div className="absolute top-full left-0 right-0 mt-1 space-y-1 z-50">
-          {otherPlatforms.map((platform) => (
-            <div key={platform.id} className="relative group">
-              <div className={`absolute inset-0 bg-gradient-to-r ${platform.hoverGradient} rounded-xl blur-lg group-hover:blur-xl transition-all duration-300`}></div>
-              <button
-                className={`relative w-full bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/50 ${platform.hoverBorder} transition-all duration-300 cursor-pointer group`}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSelectedOs(platform.id);
-                  setIsExpanded(false);
-                }}
-              >
-                <div className="flex items-center space-x-4">
-                  <div className={`w-12 h-12 bg-gradient-to-br ${platform.gradient} rounded-lg flex items-center justify-center`}>
-                    {platform.icon}
-                  </div>
-                  <div className="flex-1">
-                    <h3 className={`text-lg font-bold text-white ${platform.textHover} transition-colors`}>
-                      {platform.name}
-                    </h3>
-                  </div>
-                </div>
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
+      {/* Release note */}
+      <div className="mt-4 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
+        <p className="text-sm text-zinc-400 text-center">
+          <span className="text-blue-400 font-medium">Release Date:</span> Monday, August 18th
+          <br />
+          Binaries for Windows, Mac, and Linux will be available for download.
+        </p>
+      </div>
     </div>
   );
 }

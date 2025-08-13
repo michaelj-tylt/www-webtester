@@ -93,14 +93,13 @@ export default function HomePage() {
                     <div className="space-y-3 sm:space-y-4">
                       {/* Windows */}
                       <div id="download-windows" className="relative group">
-                        <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
-                        <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-zinc-600/50 hover:border-blue-400/50 transition-all duration-300 cursor-pointer group">
+                        <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-zinc-600/50 border-zinc-600/30 cursor-not-allowed opacity-60">
                           <div className="flex items-center space-x-3 sm:space-x-4">
                             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-lg flex items-center justify-center">
                               <FaWindows size={20} className="sm:w-6 sm:h-6 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Windows</h3>
+                              <h3 className="text-base sm:text-lg font-bold text-white text-zinc-400">Windows</h3>
                             </div>
                             <div className="platform-badge bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs px-2 sm:px-3 py-1 rounded-full font-medium opacity-0">
                               Detected
@@ -111,14 +110,13 @@ export default function HomePage() {
 
                       {/* macOS */}
                       <div id="download-macos" className="relative group">
-                        <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
-                        <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-zinc-600/50 hover:border-purple-400/50 transition-all duration-300 cursor-pointer group">
+                        <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-zinc-600/50 border-zinc-600/30 cursor-not-allowed opacity-60">
                           <div className="flex items-center space-x-3 sm:space-x-4">
                             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
                               <FaApple size={20} className="sm:w-6 sm:h-6 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Mac Silicon</h3>
+                              <h3 className="text-base sm:text-lg font-bold text-white text-zinc-400">Mac Silicon</h3>
                             </div>
                             <div className="platform-badge bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-2 sm:px-3 py-1 rounded-full font-medium opacity-0">
                               Detected
@@ -129,14 +127,13 @@ export default function HomePage() {
 
                       {/* Linux */}
                       <div id="download-linux" className="relative group">
-                        <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
-                        <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-zinc-600/50 hover:border-orange-400/50 transition-all duration-300 cursor-pointer group">
+                        <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-3 sm:p-4 backdrop-blur-sm border border-zinc-600/50 border-zinc-600/30 cursor-not-allowed opacity-60">
                           <div className="flex items-center space-x-3 sm:space-x-4">
                             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-lg flex items-center justify-center">
                               <SiLinux size={20} className="sm:w-6 sm:h-6 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-base sm:text-lg font-bold text-white group-hover:text-orange-300 transition-colors">Linux</h3>
+                              <h3 className="text-base sm:text-lg font-bold text-white text-zinc-400">Linux</h3>
                             </div>
                             <div className="platform-badge bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs px-2 sm:px-3 py-1 rounded-full font-medium opacity-0">
                               Detected
@@ -144,6 +141,15 @@ export default function HomePage() {
                           </div>
                         </div>
                       </div>
+                    </div>
+                    
+                    {/* Release date message */}
+                    <div className="mt-4 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
+                      <p className="text-sm text-zinc-400 text-center">
+                        <span className="text-blue-400 font-medium">Release Date:</span> Monday, August 18th
+                        <br />
+                        Binaries for Windows, Mac, and Linux will be available for download.
+                      </p>
                     </div>
                   </div>
                 </div>
