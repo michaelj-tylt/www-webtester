@@ -145,12 +145,12 @@ export function AirbnbSlideshow({ speed: initialSpeed = 2 }: AirbnbSlideshowProp
             alt={`Airbnb demo step ${currentSlide}`}
             width={800}
             height={600}
-            className="object-contain w-full h-full hover:scale-105 transition-transform"
+            className="object-contain w-full h-full"
             priority={currentSlide <= 3}
             unoptimized
             onError={() => console.error('Image failed to load:', getImagePath(currentSlide))}
           />
-          <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+          <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-3 py-2 rounded text-sm z-10 pointer-events-none">
             Click to expand
           </div>
         </div>

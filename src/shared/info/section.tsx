@@ -57,9 +57,9 @@ export const Section: FC<SectionProps> = ({
 
   return (
     <section 
-      className={`h-dvh snap-start flex items-center justify-center overflow-hidden ${getBgClass()} ${className}`}
+      className={`min-h-screen flex items-center justify-center ${getBgClass()} ${className}`}
     >
-      <div className="w-full h-full flex items-center justify-center py-4 sm:py-8 md:py-12 overflow-y-auto">
+      <div className="w-full flex items-center justify-center py-16 sm:py-20 md:py-24">
         {children}
       </div>
     </section>

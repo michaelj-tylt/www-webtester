@@ -58,23 +58,6 @@ export function Header({ scrolled = false }: HeaderProps) {
           >
             <span className="relative">Download</span>
           </a>
-          <a
-            href="https://github.com/WhyTylt/tylt-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`flex items-center gap-1 text-white hover:text-yellow-400 transition-colors duration-200 ${
-              scrolled ? "text-sm" : "text-base"
-            }`}
-          >
-            <svg 
-              className={`${scrolled ? "w-4 h-4" : "w-5 h-5"} transition-all duration-300`} 
-              fill="currentColor" 
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2L15.09 8.26L22 9L17 14L18.18 21L12 17.77L5.82 21L7 14L2 9L8.91 8.26L12 2Z"/>
-            </svg>
-            <span>Star us</span>
-          </a>
         </nav>
       </div>
     </header>

@@ -1,30 +1,21 @@
 'use client';
-import { useRef, useState } from 'react';
-import dynamic from 'next/dynamic';
-
-const ReactPageScroller = dynamic(() => import('react-page-scroller'), {
-  ssr: false,
-});
+import { useRef } from 'react';
 import { Header } from '@/shared/header';
 import { Footer } from '@/shared/footer';
 import { Section } from '@/shared/section';
 import { Hero } from '@/shared/hero-landing';
 import { DownloadButton } from '@/shared/download-button';
-import { ContactSalesButton } from '@/shared/contact-sales-button';
 // import { DemoRequestContent } from '@/shared/demo-request';
 import PixelBackground from '@/shared/react-bits/Backgrounds/PixelBackground/PixelBackground';
 import Aurora from '@/shared/react-bits/Backgrounds/Aurora/Aurora';
+import { DownloadSection } from '@/shared/download-section';
+import { FaWindows, FaApple, FaLinux } from 'react-icons/fa';
 
 export default function HomePage() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [currentPage, setCurrentPage] = useState(0);
-
-  const handlePageChange = (number: number) => {
-    setCurrentPage(number);
-  };
 
   return (
-    <div className="h-screen w-screen relative overflow-hidden">
+    <div className="min-h-screen w-full relative">
       {/* Background layers */}
       <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#0a0e1a] to-[#0f172a]" />
       <div className="fixed inset-0 z-0 opacity-60">
@@ -45,30 +36,13 @@ export default function HomePage() {
       </div>
 
       {/* Header */}
-      <Header scrolled={currentPage > 0} />
+      <Header scrolled={false} />
       
-      {/* Page Scroller */}
-      <ReactPageScroller
-        pageOnChange={handlePageChange}
-        customPageNumber={currentPage}
-        animationTimer={1000}
-        animationTimerBuffer={100}
-        transitionTimingFunction="cubic-bezier(0.25, 0.46, 0.45, 0.94)"
-        containerHeight="100vh"
-        containerWidth="100vw"
-        blockScrollUp={false}
-        blockScrollDown={false}
-        renderAllPagesOnFirstRender={false}
-      >
+      {/* Content */}
+      <div className="relative z-10">
         {/* Page 1: Hero */}
         <div 
-          className="h-screen w-screen flex items-center justify-center relative z-10 text-white outline-none overflow-hidden"
-          tabIndex={0}
-          ref={(input) => {
-            if (input) {
-              input.focus();
-            }
-          }}
+          className="h-screen w-full flex items-center justify-center relative text-white"
         >
           <Section isHero={true}>
             <Hero 
@@ -82,150 +56,378 @@ export default function HomePage() {
         </div>
 
         {/* Page 2: Download */}
-        <div className="h-screen w-screen flex items-center justify-center relative z-10 text-white overflow-hidden">
-          <Section id="download">
-            <Section.Heading size="xl">Download Tylt</Section.Heading>
-            <div className="flex flex-col items-center justify-center space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-7 xl:space-y-8 max-w-2xl mx-auto">
-              <div className="text-center">
-                <Section.Subheading>Get Started Today</Section.Subheading>
-                <Section.Text size="sm">
-                  Docker Desktop required. Supports Windows, Mac, and Linux (Mac/Linux use same run scripts).
-                </Section.Text>
-              </div>
-              <div>
-                <DownloadButton />
+        <div id="download" className="min-h-screen w-full flex items-center justify-center relative text-white">
+          <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+            {/* Download options section - LEFT SIDE */}
+            <div className="flex-1 lg:pr-12 mb-12 lg:mb-0">
+              <div className="relative">
+                {/* Subtle glow effect behind download options */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform rotate-1"></div>
+                <div className="relative bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 rounded-2xl p-6 backdrop-blur-sm border border-zinc-700/50">
+                  {/* Platform download options */}
+                  <div className="space-y-4">
+                    {/* Windows */}
+                    <div id="download-windows" className="relative group">
+                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                      <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/50 hover:border-blue-400/50 transition-all duration-300 cursor-pointer group">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-lg flex items-center justify-center">
+                            <FaWindows size={24} className="text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Windows</h3>
+                          </div>
+                          <div className="platform-badge bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs px-3 py-1 rounded-full font-medium opacity-0">
+                            Detected
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* macOS */}
+                    <div id="download-macos" className="relative group">
+                      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                      <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/50 hover:border-purple-400/50 transition-all duration-300 cursor-pointer group">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-purple-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <FaApple size={24} className="text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Mac Silicon</h3>
+                          </div>
+                          <div className="platform-badge bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-3 py-1 rounded-full font-medium opacity-0">
+                            Detected
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Linux */}
+                    <div id="download-linux" className="relative group">
+                      <div className="absolute inset-0 bg-gradient-to-r from-orange-500/20 to-red-500/20 rounded-xl blur-lg group-hover:blur-xl transition-all duration-300"></div>
+                      <div className="relative bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/50 hover:border-orange-400/50 transition-all duration-300 cursor-pointer group">
+                        <div className="flex items-center space-x-4">
+                          <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-red-400 rounded-lg flex items-center justify-center">
+                            <FaLinux size={24} className="text-white" />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-lg font-bold text-white group-hover:text-orange-300 transition-colors">Linux</h3>
+                          </div>
+                          <div className="platform-badge bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs px-3 py-1 rounded-full font-medium opacity-0">
+                            Detected
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </Section>
+            
+            {/* Text section - RIGHT SIDE */}
+            <div className="flex-1 lg:pl-12 text-center lg:text-left">
+              <div className="space-y-8">
+                {/* Main headline with gradient */}
+                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    Download
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                    Tylt
+                  </span>
+                </h1>
+                
+                {/* Subtitle with elegant styling */}
+                <div className="relative">
+                  <p className="text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
+                    Get Started Today
+                  </p>
+                  <p className="text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0 mt-4">
+                    Docker Desktop required.
+                  </p>
+                  {/* Subtle accent line */}
+                  <div className="absolute -right-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full opacity-60 hidden lg:block"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
         </div>
 
         {/* Page 3: Problems */}
-        <div className="h-screen w-screen flex items-center justify-center relative z-10 text-white overflow-hidden">
-          <Section>
-            <Section.Heading size="xl">The Problem with Current Testing Tools</Section.Heading>
-            <Section.Grid cols="2">
-              <Section.Card>
-                <Section.Heading size="sm" card>Headless Testing is Fake Testing</Section.Heading>
-                <Section.Text size="sm">Your customers don&apos;t use headless browsers. They use real Chrome, Safari, and Firefox with real rendering, real JavaScript, and real user interactions.</Section.Text>
-              </Section.Card>
-              <Section.Card>
-                <Section.Heading size="sm" card>DOM Selectors Break Everything</Section.Heading>
-                <Section.Text size="sm">Every time you change a class name, move a button, or update your design, your tests break. DOM-based testing is obsolete.</Section.Text>
-              </Section.Card>
-              <Section.Card>
-                <Section.Heading size="sm" card>Esoteric Code Requirements</Section.Heading>
-                <Section.Text size="sm">Playwright and Selenium require expensive, ever-changing, complicated code suites. Your tests become another codebase to maintain.</Section.Text>
-              </Section.Card>
-              <Section.Card>
-                <Section.Heading size="sm" card>No Intelligence or Adaptation</Section.Heading>
-                <Section.Text size="sm">Traditional tools can&apos;t handle popups, changed text, moved buttons, network errors, or site redesigns. One small change breaks everything.</Section.Text>
-              </Section.Card>
-            </Section.Grid>
-          </Section>
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
+          <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+            {/* Text section */}
+            <div className="flex-1 lg:pr-12 text-center lg:text-left mb-12 lg:mb-0">
+              <div className="space-y-8">
+                {/* Main headline with gradient */}
+                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    The Problem with
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                    Current Testing Tools
+                  </span>
+                </h1>
+                
+                {/* Subtitle with elegant styling */}
+                <div className="relative">
+                  <p className="text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
+                    Traditional testing tools are broken. They rely on brittle DOM selectors, headless environments, and complex code that breaks with every UI change.
+                  </p>
+                  {/* Subtle accent line */}
+                  <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full opacity-60 hidden lg:block"></div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Problems section */}
+            <div className="flex-1">
+              <div className="relative">
+                {/* Subtle glow effect behind problems */}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
+                <div className="relative bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 rounded-2xl p-6 backdrop-blur-sm border border-zinc-700/50">
+                  <div className="space-y-6">
+                    {/* Problem 1 */}
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-bold text-blue-200">Headless Testing is Fake Testing</h3>
+                      <p className="text-base text-zinc-300 leading-relaxed">Your customers don't use headless browsers. They use real Chrome, Safari, and Firefox with real rendering, real JavaScript, and real user interactions.</p>
+                    </div>
+                    
+                    <div className="border-t border-zinc-700/50"></div>
+                    
+                    {/* Problem 2 */}
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-bold text-purple-200">DOM Selectors Break Everything</h3>
+                      <p className="text-base text-zinc-300 leading-relaxed">Every time you change a class name, move a button, or update your design, your tests break. DOM-based testing is obsolete.</p>
+                    </div>
+                    
+                    <div className="border-t border-zinc-700/50"></div>
+                    
+                    {/* Problem 3 */}
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-bold text-blue-200">Esoteric Code Requirements</h3>
+                      <p className="text-base text-zinc-300 leading-relaxed">Playwright and Selenium require expensive, ever-changing, complicated code suites. Your tests become another codebase to maintain.</p>
+                    </div>
+                    
+                    <div className="border-t border-zinc-700/50"></div>
+                    
+                    {/* Problem 4 */}
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-bold text-purple-200">No Intelligence or Adaptation</h3>
+                      <p className="text-base text-zinc-300 leading-relaxed">Traditional tools can't handle popups, changed text, moved buttons, network errors, or site redesigns. One small change breaks everything.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Page 4: Solution */}
-        <div className="h-screen w-screen flex items-center justify-center relative z-10 text-white overflow-hidden">
-          <Section>
-            <Section.Heading size="xl">Tylt: Vision-Based Website Testing That Actually Works</Section.Heading>
-            <Section.Text size="sm">Tylt can actually SEE your website and navigate it using a real browser on a real desktop using a mouse and keyboard - just like a real customer would.</Section.Text>
-            <Section.Grid cols="3">
-              <Section.Card>
-                <Section.Heading size="sm" card>Vision AI That Actually Sees</Section.Heading>
-                <Section.Text size="sm">Our powerful vision model sees your website like a human does - identifying buttons, forms, and content visually, not through fragile DOM selectors.</Section.Text>
-              </Section.Card>
-              <Section.Card>
-                <Section.Heading size="sm" card>Plain English Instructions</Section.Heading>
-                <Section.Text size="sm">Write tests in plain English. No code, no selectors, no technical syntax. Just describe what you want tested like you&apos;re talking to a person.</Section.Text>
-              </Section.Card>
-              <Section.Card>
-                <Section.Heading size="sm" card>Intelligent & Adaptive</Section.Heading>
-                <Section.Text size="sm">Tylt overcomes popups, changed text, moved buttons, network errors, and even whole site redesigns. It&apos;s an intelligent agent, not a brittle script.</Section.Text>
-              </Section.Card>
-            </Section.Grid>
-          </Section>
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="space-y-16">
+              {/* Main headline with gradient */}
+              <div className="text-center space-y-6">
+                <h2 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    Tylt: Vision-Based Testing
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                    That Actually Works
+                  </span>
+                </h2>
+                <p className="text-xl lg:text-2xl text-zinc-300 leading-relaxed font-light max-w-4xl mx-auto">
+                  Tylt can actually SEE your website and navigate it using a real browser on a real desktop using a mouse and keyboard - just like a real customer would.
+                </p>
+              </div>
+              
+              {/* Feature cards grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {/* Card 1 */}
+                <div className="relative group h-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-800/60 rounded-2xl p-8 backdrop-blur-sm border border-zinc-700/50 hover:border-blue-500/30 transition-all duration-300 h-full flex flex-col">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-blue-200 mb-6">Vision AI That Actually Sees</h3>
+                    <p className="text-lg text-zinc-300 leading-relaxed flex-1">Our powerful vision model sees your website like a human does - identifying buttons, forms, and content visually, not through fragile DOM selectors.</p>
+                  </div>
+                </div>
+                
+                {/* Card 2 */}
+                <div className="relative group h-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-800/60 rounded-2xl p-8 backdrop-blur-sm border border-zinc-700/50 hover:border-purple-500/30 transition-all duration-300 h-full flex flex-col">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-purple-200 mb-6">Plain English Instructions</h3>
+                    <p className="text-lg text-zinc-300 leading-relaxed flex-1">Write tests in plain English. No code, no selectors, no technical syntax. Just describe what you want tested like you're talking to a person.</p>
+                  </div>
+                </div>
+                
+                {/* Card 3 */}
+                <div className="relative group h-full">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-zinc-900/80 to-zinc-800/60 rounded-2xl p-8 backdrop-blur-sm border border-zinc-700/50 hover:border-blue-500/30 transition-all duration-300 h-full flex flex-col">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-blue-200 mb-6">Intelligent & Adaptive</h3>
+                    <p className="text-lg text-zinc-300 leading-relaxed flex-1">Tylt overcomes popups, changed text, moved buttons, network errors, and even whole site redesigns. It's an intelligent agent, not a brittle script.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Page 5: Code Example */}
-        <div className="h-screen w-screen flex items-center justify-center relative z-10 text-white overflow-hidden">
-          <Section>
-            <Section.Heading size="xl">Real Browser Testing in Plain English</Section.Heading>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12">
-              <div>
-                <Section.Subheading>Before Tylt</Section.Subheading>
-                <Section.Code>
-                  <p>await page.locator(&apos;[data-testid=&quot;login-button&quot;]&apos;).click();</p>
-                  <p>await page.fill(&apos;#username-input-field-id&apos;, &quot;user@test.com&quot;);</p>
-                  <p>await page.fill(&apos;#password-input-field-id&apos;, &quot;password123&quot;);</p>
-                  <p>await page.click(&apos;[data-testid=&quot;submit-button&quot;]&apos;);</p>
-                  <p>await expect(page.locator(&apos;.welcome-message&apos;)).toBeVisible();</p>
-                </Section.Code>
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-8">
+            <div className="space-y-16">
+              {/* Main headline with gradient */}
+              <div className="text-center space-y-6">
+                <h2 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    Real Browser Testing
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                    in Plain English
+                  </span>
+                </h2>
               </div>
-              <div>
-                <Section.Subheading>After Tylt</Section.Subheading>
-                <Section.Code>
-                  <p>Go to https://pageurl.domain</p>
-                  <p>Enter &quot;user@test.com&quot; as the username</p>
-                  <p>Enter &quot;password123&quot; as the password</p>
-                  <p>Click login</p>
-                  <p>Verify the welcome message appears</p>
-                </Section.Code>
+              
+              {/* Code comparison */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Before Tylt */}
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-blue-200">Before Tylt</h3>
+                  <div className="bg-black/60 rounded-lg p-6 font-mono text-base space-y-3 border border-zinc-700/50">
+                    <p className="text-zinc-300">await page.locator('[data-testid="login-button"]').click();</p>
+                    <p className="text-zinc-300">await page.fill('#username-input-field-id', "user@test.com");</p>
+                    <p className="text-zinc-300">await page.fill('#password-input-field-id', "password123");</p>
+                    <p className="text-zinc-300">await page.click('[data-testid="submit-button"]');</p>
+                    <p className="text-zinc-300">await expect(page.locator('.welcome-message')).toBeVisible();</p>
+                  </div>
+                </div>
+                
+                {/* After Tylt */}
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-purple-200">After Tylt</h3>
+                  <div className="bg-black/60 rounded-lg p-6 font-mono text-base space-y-3 border border-zinc-700/50">
+                    <p className="text-zinc-300">Go to https://pageurl.domain</p>
+                    <p className="text-zinc-300">Enter "user@test.com" as the username</p>
+                    <p className="text-zinc-300">Enter "password123" as the password</p>
+                    <p className="text-zinc-300">Click login</p>
+                    <p className="text-zinc-300">Verify the welcome message appears</p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Bottom text */}
+              <div className="text-center">
+                <p className="text-xl lg:text-2xl text-zinc-300 leading-relaxed font-light max-w-4xl mx-auto">
+                  Tylt handles the rest - finding elements visually, dealing with loading states, and adapting to changes automatically.
+                </p>
               </div>
             </div>
-            <Section.Text size="sm">Tylt handles the rest - finding elements visually, dealing with loading states, and adapting to changes automatically.</Section.Text>
-          </Section>
+          </div>
         </div>
 
         {/* Page 6: Pricing */}
-        <div className="h-screen w-screen flex items-center justify-center relative z-10 text-white overflow-hidden">
-          <Section>
-            <Section.Heading size="xl">Simple, Transparent Pricing</Section.Heading>
-            <Section.Text size="sm">Our pricing is easy - start free, then pay as you scale</Section.Text>
-            <Section.Grid cols="2">
-              <Section.Card>
-                <Section.Subheading>For Everyone</Section.Subheading>
-                <div className="space-y-4">
-                  <div className="text-2xl font-bold text-blue-400">
-                    Initial month: <span className="text-blue-400">$0/mo</span>
-                  </div>
-                  <div className="text-xl font-semibold">
-                    After: <span className="text-white">$25/mo</span>
-                  </div>
-                  <div className="text-base text-zinc-300">
-                    + Pay for model usage. Most tests are less than a penny
-                  </div>
-                  <div className="mt-6">
-                    <DownloadButton />
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
+          <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+            {/* Text section */}
+            <div className="flex-1 lg:pr-12 text-center lg:text-left mb-12 lg:mb-0">
+              <div className="space-y-8">
+                {/* Main headline with gradient */}
+                <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
+                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                    Simple, Transparent
+                  </span>
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                    Pricing
+                  </span>
+                </h1>
+                
+                {/* Subtitle with elegant styling */}
+                <div className="relative">
+                  <p className="text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
+                    Our pricing is easy - start free, then pay as you scale
+                  </p>
+                  {/* Subtle accent line */}
+                  <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full opacity-60 hidden lg:block"></div>
+                </div>
+              </div>
+            </div>
+            
+            {/* Pricing section */}
+            <div className="flex-1">
+              <div className="space-y-6">
+                {/* For Everyone */}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
+                  <div className="relative bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 rounded-2xl p-6 backdrop-blur-sm border border-zinc-700/50">
+                    <div className="space-y-4">
+                      <h3 className="text-2xl font-bold text-blue-200">For Everyone</h3>
+                      <div className="text-2xl font-bold text-blue-400">
+                        Initial month: <span className="text-blue-400">$0/mo</span>
+                      </div>
+                      <div className="text-xl font-semibold">
+                        After: <span className="text-white">$25/mo</span>
+                      </div>
+                      <div className="text-base text-zinc-300">
+                        + Pay for model usage. Most tests are less than a penny
+                      </div>
+                      <div className="mt-4">
+                        <a 
+                          href="#download"
+                          className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-400 hover:to-purple-400 text-white px-6 py-3 rounded-full transition-all text-base font-medium"
+                        >
+                          Download
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </Section.Card>
-              <Section.Card>
-                <Section.Subheading>Enterprise</Section.Subheading>
-                <div className="space-y-4">
-                  <div className="text-xl font-semibold text-blue-400">
-                    Custom Seat Pricing
+                
+                {/* Enterprise */}
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-2xl blur-xl transform rotate-1"></div>
+                  <div className="relative bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 rounded-2xl p-6 backdrop-blur-sm border border-zinc-700/50">
+                    <div className="space-y-4">
+                      <h3 className="text-2xl font-bold text-purple-200">Enterprise</h3>
+                      <div className="text-xl font-semibold text-blue-400">
+                        Custom Seat Pricing
+                      </div>
+                      <div className="text-base text-zinc-300">
+                        Tailored pricing for teams and organizations
+                      </div>
+                      <div className="space-y-2">
+                        <div className="text-base text-zinc-400">✓ Volume discounts available</div>
+                        <div className="text-base text-zinc-400">✓ On-premises deployment</div>
+                        <div className="text-base text-zinc-400">✓ Priority support</div>
+                        <div className="text-base text-zinc-400">✓ Custom integrations</div>
+                      </div>
+                      <div className="text-right">
+                        <a 
+                          href="mailto:hello@gotylt.com?subject=Enterprise%20Pricing%20Inquiry"
+                          className="text-purple-400 hover:text-purple-300 transition-colors text-sm"
+                        >
+                          Contact Sales →
+                        </a>
+                      </div>
+                    </div>
                   </div>
-                  <div className="text-base text-zinc-300">
-                    Tailored pricing for teams and organizations
-                  </div>
-                  <div className="space-y-3">
-                    <div className="text-base text-zinc-400">✓ Volume discounts available</div>
-                    <div className="text-base text-zinc-400">✓ On-premises deployment</div>
-                    <div className="text-base text-zinc-400">✓ Priority support</div>
-                    <div className="text-base text-zinc-400">✓ Custom integrations</div>
-                  </div>
-                  <ContactSalesButton />
                 </div>
-              </Section.Card>
-            </Section.Grid>
-          </Section>
+              </div>
+            </div>
+          </div>
         </div>
 
-        {/* Page 7: Footer */}
-        <div className="h-screen w-screen flex items-center justify-center relative z-10 text-white overflow-hidden">
-          <Footer />
-        </div>
-      </ReactPageScroller>
+        {/* Footer */}
+        <Footer />
+      </div>
     </div>
   );
 }

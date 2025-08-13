@@ -1,4 +1,5 @@
 import { Section } from "@/shared/section";
+import { AirbnbSlideshow } from "@/shared/airbnb-slideshow";
 // import { DemoButton } from "@/shared/demo-button";
 // import Image from "next/image";
 import { useEffect, useState, RefObject, useRef } from "react";
@@ -17,12 +18,9 @@ export function Hero({ primaryText, secondaryText, tertiaryText, description, co
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
     const handleScroll = () => {
-      const scrollTop = container.scrollTop;
-      const viewportHeight = container.clientHeight;
+      const scrollTop = window.scrollY;
+      const viewportHeight = window.innerHeight;
       const shouldShow = scrollTop < viewportHeight * 0.8;
       
       if (shouldShow !== showScreenshot) {
@@ -35,47 +33,60 @@ export function Hero({ primaryText, secondaryText, tertiaryText, description, co
       }
     };
 
-    container.addEventListener('scroll', handleScroll);
-    return () => container.removeEventListener('scroll', handleScroll);
-  }, [containerRef, showScreenshot]);
+    window.addEventListener('scroll', handleScroll);
+    // Trigger initial check
+    handleScroll();
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showScreenshot]);
 
   return (
-    <>
+    <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
       {/* Text section */}
-      <div className="fixed top-0 left-0 right-0 z-20 flex items-end md:items-center justify-center px-8 h-[50vh] md:h-[50vh]">
-        <div className="max-w-xs md:max-w-2xl mx-auto text-center pb-4 md:pb-0">
-          <div className="text-4xl md:text-3xl lg:text-4xl xl:text-5xl text-white mb-8 md:mb-6 leading-tight font-bold">
-            {primaryText}
+      <div className="flex-1 lg:pr-12 text-center lg:text-left mb-12 lg:mb-0">
+        <div className="space-y-8">
+          {/* Main headline with gradient */}
+          <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
+            <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+              {primaryText.split(' ').slice(0, 2).join(' ')}
+            </span>
+            <br />
+            <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+              {primaryText.split(' ').slice(2).join(' ')}
+            </span>
+          </h1>
+          
+          {/* Subtitle with elegant styling */}
+          <div className="relative">
+            <p className="text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
+              {secondaryText}
+              {tertiaryText && (
+                <>
+                  <br />
+                  <span className="text-blue-200">{tertiaryText}</span>
+                </>
+              )}
+            </p>
+            {/* Subtle accent line */}
+            <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full opacity-60 hidden lg:block"></div>
           </div>
-          <div className="text-xl md:text-xl lg:text-2xl xl:text-3xl text-white mb-8 md:mb-6 leading-tight font-bold">
-            {secondaryText}
-            {tertiaryText && (
-              <>
-                <br />
-                {tertiaryText}
-              </>
-            )}
-          </div>
+          
           {description && (
-            <Section.Text size="sm">{description}</Section.Text>
+            <p className="text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0">{description}</p>
           )}
         </div>
       </div>
       
-      {/* Video section */}
-      <div className={`fixed bottom-0 left-0 right-0 z-30 transition-opacity duration-500 h-[50vh] md:h-[50vh] ${showScreenshot ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-        <div className="relative overflow-hidden h-full flex items-center justify-center px-4 md:px-16">
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            playsInline
-            className="object-contain w-full h-full"
-          >
-            <source src="/slideshow.mp4" type="video/mp4" />
-          </video>
+      {/* Demo section */}
+      <div className={`flex-1 transition-all duration-700 ${showScreenshot ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}>
+        <div className="relative">
+          {/* Subtle glow effect behind demo */}
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
+          <div className="relative bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 rounded-2xl p-6 backdrop-blur-sm border border-zinc-700/50">
+            <AirbnbSlideshow speed={2} />
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

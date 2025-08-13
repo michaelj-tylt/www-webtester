@@ -8,7 +8,7 @@ interface ScreenSectionProps extends PropsWithChildren {
 export const ScreenSection: FC<ScreenSectionProps> = ({ children, className = '', ...props }) => {
   return (
     <section 
-      className={`w-full h-screen flex flex-col justify-center items-center relative overflow-hidden snap-start snap-always ${className}`}
+      className={`w-full min-h-screen flex flex-col justify-center items-center relative py-16 ${className}`}
       {...props}
     >
       {children}
