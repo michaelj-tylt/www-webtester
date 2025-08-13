@@ -10,12 +10,12 @@ export function Footer() {
         {/* Contact section */}
         <div className="flex-1 lg:pr-12 mb-12 lg:mb-0">
           <div className="relative">
-            {/* Subtle glow effect behind contact */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
-            <div className="relative bg-gradient-to-br from-zinc-900/50 to-zinc-800/30 rounded-2xl p-6 backdrop-blur-sm border border-zinc-700/50">
-              <div className="space-y-6">
+            {/* Subtle glow effect behind contact - hidden on mobile */}
+            <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
+            <div className="relative sm:bg-gradient-to-br sm:from-zinc-900/50 sm:to-zinc-800/30 sm:rounded-2xl p-0 sm:p-6 sm:backdrop-blur-sm sm:border sm:border-zinc-700/50">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Logo */}
-                <div className="flex justify-center lg:justify-start">
+                <div className="flex justify-start">
                   <Link href="/" className="hover:opacity-80 transition-opacity">
                     <Image
                       src="/logo.png"
@@ -27,7 +27,7 @@ export function Footer() {
                 </div>
                 
                 {/* Contact links */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                   <a
                     href="mailto:hello@gotylt.com"
                     className="flex items-center text-zinc-300 hover:text-white transition-colors"
@@ -67,10 +67,10 @@ export function Footer() {
         </div>
         
         {/* Text section */}
-        <div className="flex-1 lg:pl-12 text-center lg:text-left">
-          <div className="space-y-8">
+        <div className="flex-1 lg:pl-12 text-left">
+          <div className="space-y-6 sm:space-y-8">
             {/* Main headline with gradient */}
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] sm:leading-tight">
               <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
                 Ready to
               </span>
@@ -82,14 +82,14 @@ export function Footer() {
             
             {/* Subtitle with elegant styling */}
             <div className="relative">
-              <p className="text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl mx-auto lg:mx-0">
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl">
                 Throw those headless tests in the trash and use Tylt instead!
               </p>
               {/* Subtle accent line */}
               <div className="absolute -right-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full opacity-60 hidden lg:block"></div>
             </div>
             
-            <p className="text-lg text-zinc-400 max-w-xl mx-auto lg:mx-0">Made with ❤️ in sunny San Diego.</p>
+            <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-xl">Made with ❤️ in sunny San Diego.</p>
           </div>
         </div>
       </div>

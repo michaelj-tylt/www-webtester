@@ -24,9 +24,17 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setMounted(true);
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   useEffect(() => {
@@ -104,12 +112,12 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
 
   const renderControls = () => (
     <div className="text-center">
-      <p className="text-base text-zinc-300 min-h-[3rem] flex items-center justify-center">
+      <p className="hidden sm:flex text-base text-zinc-300 min-h-[3rem] items-center justify-center">
         {currentMessage}
       </p>
       
-      {/* Speed Control */}
-      <div className="flex items-center justify-center mt-3 space-x-3">
+      {/* Speed Control - hidden on mobile */}
+      <div className="hidden sm:flex items-center justify-center mt-3 space-x-3">
         <span className="text-sm text-zinc-400">Speed:</span>
         <span className="text-xs text-zinc-500">Slow</span>
         <input
@@ -125,11 +133,12 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
         <span className="text-sm text-zinc-300 min-w-[3rem]">{speed.toFixed(1)}s</span>
       </div>
       
+      {/* Progress dots - smaller on mobile */}
       <div className="flex justify-center mt-2 space-x-1">
         {Array.from({ length: 19 }, (_, index) => (
           <div
             key={index + 1}
-            className={`w-1.5 h-1.5 rounded-full transition-colors ${
+            className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full transition-colors ${
               index + 1 === currentSlide ? 'bg-blue-400' : 'bg-zinc-600'
             }`}
           />
@@ -140,11 +149,23 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
 
   return (
     <>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-2 sm:space-y-4">
         <div 
-          className="relative overflow-hidden rounded-lg shadow-xl cursor-pointer h-48 sm:h-64 md:h-72 lg:h-80 xl:h-96 bg-zinc-800" 
-          onClick={() => setIsPaused(prev => !prev)}
-          onTouchEnd={() => setIsPaused(prev => !prev)}
+          className="relative overflow-hidden rounded-lg shadow-xl cursor-pointer h-40 sm:h-64 md:h-72 lg:h-80 xl:h-96 bg-zinc-800" 
+          onClick={() => {
+            if (isMobile) {
+              setIsFullscreen(true);
+            } else {
+              setIsPaused(prev => !prev);
+            }
+          }}
+          onTouchEnd={() => {
+            if (isMobile) {
+              setIsFullscreen(true);
+            } else {
+              setIsPaused(prev => !prev);
+            }
+          }}
         >
           <Image
             key={currentSlide}
@@ -157,10 +178,10 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
             unoptimized
             onError={() => console.error('Image failed to load:', getImagePath(currentSlide))}
           />
-          <div className="absolute top-2 right-2 bg-black bg-opacity-70 text-white px-3 py-2 rounded text-sm z-10 pointer-events-none">
+          <div className="hidden sm:block absolute top-2 right-2 bg-black bg-opacity-70 text-white px-3 py-2 rounded text-sm z-10 pointer-events-none">
             {isPaused ? 'Click to play' : 'Click to pause'}
           </div>
-          <div className="absolute top-2 left-2 bg-black bg-opacity-70 text-white px-3 py-2 rounded text-sm z-10 cursor-pointer"
+          <div className="hidden sm:block absolute top-2 left-2 bg-black bg-opacity-70 text-white px-3 py-2 rounded text-sm z-10 cursor-pointer"
                onClick={(e) => {
                  e.stopPropagation();
                  setIsFullscreen(true);
