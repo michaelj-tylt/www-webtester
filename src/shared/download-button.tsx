@@ -81,7 +81,7 @@ export function DownloadButton() {
       <div className="relative group">
         <div className={`absolute inset-0 bg-gradient-to-r ${selectedPlatform.hoverGradient} rounded-xl blur-lg group-hover:blur-xl transition-all duration-300`}></div>
         <a
-          href="https://github.com/WhyTylt/tylt-app/archive/refs/tags/v0.0.70.zip"
+          href="#"
           className={`relative block bg-gradient-to-br from-zinc-800/80 to-zinc-700/60 rounded-xl p-4 backdrop-blur-sm border border-zinc-600/50 ${selectedPlatform.hoverBorder} transition-all duration-300 cursor-pointer group`}
           onClick={(e) => {
             e.stopPropagation();

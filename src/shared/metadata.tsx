@@ -98,9 +98,7 @@ export function createLdJson(config: TyltMetadataConfig) {
       structuredData = {
         ...structuredData,
         logo: `${mergedConfig.url}/brand-logo.png`,
-        sameAs: [
-          'https://github.com/WhyTylt/tylt-app',
-        ],
+        sameAs: [],
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'San Francisco',

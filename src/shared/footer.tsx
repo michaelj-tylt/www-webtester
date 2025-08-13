@@ -44,14 +44,6 @@ export function Footer() {
                     gotylt.com
                   </a>
                   
-                  <a 
-                    href="https://github.com/WhyTylt/tylt-app" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="block text-zinc-400 hover:text-blue-400 transition-colors"
-                  >
-                    GitHub
-                  </a>
                 </div>
                 
                 {/* Copyright */}
