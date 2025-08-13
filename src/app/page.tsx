@@ -12,7 +12,7 @@ import { SiLinux } from 'react-icons/si';
 export default function HomePage() {
 
   return (
-    <div className="min-h-screen w-full relative">
+    <div className="min-h-screen w-full relative overflow-y-scroll snap-mandatory snap-y scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
       {/* Background layers */}
       <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#0a0e1a] to-[#0f172a]" />
       <div className="fixed inset-0 z-0 opacity-60">
@@ -36,10 +36,10 @@ export default function HomePage() {
       <Header scrolled={false} />
       
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col gap-16 sm:gap-24 lg:gap-0">
         {/* Page 1: Hero */}
         <div 
-          className="h-screen w-full flex items-center justify-center relative text-white"
+          className="min-h-screen w-full flex items-center justify-center relative text-white snap-start"
         >
           <Section isHero={true}>
             <Hero 
@@ -52,26 +52,26 @@ export default function HomePage() {
         </div>
 
         {/* Page 2: Download */}
-        <div id="download" className="min-h-screen w-full flex items-center justify-center relative text-white">
+        <div id="download" className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
           <Section>
             {/* Text section - TOP ON MOBILE, RIGHT ON DESKTOP */}
             <div className="flex flex-col lg:flex-row items-start justify-start">
-              <div className="flex-1 lg:order-2 text-left mb-12 lg:mb-0">
+              <div className="flex-1 lg:order-2 text-left mb-8 lg:mb-0">
                 <div className="space-y-6 sm:space-y-8">
                   {/* Main headline with gradient */}
-                  <h1 className="text-xl sm:text-3xl md:text-4xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] sm:leading-tight">
-                    <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                  <h1 className="section-heading">
+                    <span className="section-gradient-primary">
                       Download
                     </span>
                     <br />
-                    <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                    <span className="section-gradient-secondary">
                       Tylt
                     </span>
                   </h1>
                   
                   {/* Subtitle with elegant styling */}
                   <div className="relative">
-                    <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl">
+                    <p className="section-subheading">
                       Get Started Today
                     </p>
                     <p className="text-sm sm:text-base lg:text-lg text-zinc-400 max-w-xl mt-4">
@@ -153,25 +153,26 @@ export default function HomePage() {
         </div>
 
         {/* Page 3: Problems */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
-          <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+          <Section>
+            <div className="relative flex flex-col lg:flex-row items-center justify-center">
             {/* Text section */}
-            <div className="flex-1 lg:pr-12 text-left mb-12 lg:mb-0">
+            <div className="flex-1 lg:pr-12 text-left mb-8 lg:mb-0">
               <div className="space-y-6 sm:space-y-8">
                 {/* Main headline with gradient */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] sm:leading-tight">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                <h1 className="section-heading">
+                  <span className="section-gradient-primary">
                     The Problem with
                   </span>
                   <br />
-                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                  <span className="section-gradient-secondary">
                     Current Testing Tools
                   </span>
                 </h1>
                 
                 {/* Subtitle with elegant styling */}
                 <div className="relative">
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl">
+                  <p className="section-subheading">
                     Traditional testing tools are broken. They rely on brittle DOM selectors, headless environments, and complex code that breaks with every UI change.
                   </p>
                   {/* Subtle accent line */}
@@ -220,25 +221,26 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </Section>
         </div>
 
         {/* Page 4: Solution */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="space-y-16">
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+          <Section>
+            <div className="space-y-8 sm:space-y-12 lg:space-y-16">
               {/* Main headline with gradient */}
               <div className="text-left lg:text-center space-y-6">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] lg:leading-tight">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                <h2 className="section-heading">
+                  <span className="section-gradient-primary">
                     Tylt: Vision-Based Testing
                   </span>
                   <br />
-                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                  <span className="section-gradient-secondary">
                     That Actually Works
                   </span>
                 </h2>
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-300 leading-relaxed font-light max-w-4xl lg:mx-auto">
+                <p className="section-subheading lg:mx-auto max-w-4xl">
                   Tylt can actually SEE your website and navigate it using a real browser on a real desktop using a mouse and keyboard - just like a real customer would.
                 </p>
               </div>
@@ -273,21 +275,21 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
+          </Section>
         </div>
 
         {/* Page 5: Code Example */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
-          <div className="max-w-7xl mx-auto px-6 lg:px-8">
-            <div className="space-y-16">
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+          <Section>
+            <div className="space-y-8 sm:space-y-12 lg:space-y-16">
               {/* Main headline with gradient */}
               <div className="text-left lg:text-center space-y-6">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] lg:leading-tight">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                <h2 className="section-heading">
+                  <span className="section-gradient-primary">
                     Real Browser Testing
                   </span>
                   <br />
-                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                  <span className="section-gradient-secondary">
                     in Plain English
                   </span>
                 </h2>
@@ -322,34 +324,35 @@ export default function HomePage() {
               
               {/* Bottom text */}
               <div className="text-left lg:text-center">
-                <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-zinc-300 leading-relaxed font-light max-w-4xl lg:mx-auto">
+                <p className="section-subheading lg:mx-auto max-w-4xl">
                   Tylt handles the rest - finding elements visually, dealing with loading states, and adapting to changes automatically.
                 </p>
               </div>
             </div>
-          </div>
+          </Section>
         </div>
 
         {/* Page 6: Pricing */}
-        <div className="min-h-screen w-full flex items-center justify-center relative text-white">
-          <div className="relative min-h-screen flex flex-col lg:flex-row items-center justify-center max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20">
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+          <Section>
+            <div className="relative flex flex-col lg:flex-row items-center justify-center">
             {/* Text section */}
-            <div className="flex-1 lg:pr-12 text-left mb-12 lg:mb-0">
+            <div className="flex-1 lg:pr-12 text-left mb-8 lg:mb-0">
               <div className="space-y-6 sm:space-y-8">
                 {/* Main headline with gradient */}
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.1] sm:leading-tight">
-                  <span className="bg-gradient-to-r from-white via-blue-100 to-purple-200 bg-clip-text text-transparent">
+                <h1 className="section-heading">
+                  <span className="section-gradient-primary">
                     Simple, Transparent
                   </span>
                   <br />
-                  <span className="bg-gradient-to-r from-purple-200 via-blue-200 to-white bg-clip-text text-transparent">
+                  <span className="section-gradient-secondary">
                     Pricing
                   </span>
                 </h1>
                 
                 {/* Subtitle with elegant styling */}
                 <div className="relative">
-                  <p className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl text-zinc-300 leading-relaxed font-light max-w-2xl">
+                  <p className="section-subheading">
                     Our pricing is easy - start free, then pay as you scale
                   </p>
                   {/* Subtle accent line */}
@@ -419,11 +422,16 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-          </div>
+            </div>
+          </Section>
         </div>
 
         {/* Footer */}
-        <Footer />
+        <div className="min-h-screen w-full flex items-center justify-center relative text-white snap-start">
+          <Section>
+            <Footer />
+          </Section>
+        </div>
       </div>
     </div>
   );

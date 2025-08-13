@@ -27,7 +27,7 @@ export function Section({ children, isHero, id, className }: SectionProps) {
       id={id}
       className={`w-full flex items-center justify-center relative z-40 ${className || ''}`}
     >
-      <div className={`relative z-40 w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-7xl text-left px-4 py-6 pb-8 sm:px-6 sm:py-8 sm:pb-10 md:px-8 md:py-10 md:pb-12 lg:px-10 lg:py-12 lg:pb-14 xl:px-12 xl:py-16 xl:pb-20 ${isHero ? 'hero-section' : ''}`}>
+      <div className={`relative z-40 w-full max-w-7xl mx-auto text-left px-6 lg:px-8 ${isHero ? 'hero-section' : ''}`}>
         {children}
       </div>
     </section>

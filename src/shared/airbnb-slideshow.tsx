@@ -149,7 +149,7 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
 
   return (
     <>
-      <div className="flex flex-col space-y-2 sm:space-y-4">
+      <div className="flex flex-col space-y-1 sm:space-y-2">
         <div 
           className="relative overflow-hidden rounded-lg shadow-xl cursor-pointer h-40 sm:h-64 md:h-72 lg:h-80 xl:h-96 bg-zinc-800" 
           onClick={() => {
@@ -217,7 +217,7 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
           
           <div className="w-full h-screen flex flex-col">
             <div className="flex-1 flex items-center justify-center">
-              <div className="relative">
+              <div className={`relative ${isMobile ? 'rotate-90 w-[80vh] h-[50vw]' : ''}`}>
                 <Image
                   key={currentSlide}
                   src={getImagePath(currentSlide)}
