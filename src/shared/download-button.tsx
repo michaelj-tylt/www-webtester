@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import { usePostHog } from 'posthog-js/react';
 import { Monitor, Apple } from 'lucide-react';
+import theme from '../theme';
 
 export function DownloadButton() {
   const [detectedOs, setDetectedOs] = useState<'windows' | 'mac' | 'linux' | null>(null);
@@ -29,19 +30,19 @@ export function DownloadButton() {
       id: 'windows' as const,
       name: 'Windows',
       icon: <Monitor className="w-6 h-6 text-white" />,
-      gradient: 'from-blue-400 to-cyan-400',
-      hoverGradient: 'from-blue-500/20 to-cyan-500/20',
-      hoverBorder: 'hover:border-blue-400/50',
-      textHover: 'group-hover:text-blue-300'
+      gradient: theme.classes.gradient,
+      hoverGradient: theme.classes.gradientHover,
+      hoverBorder: `hover:${theme.classes.border}`,
+      textHover: `group-${theme.classes.primaryHover}`
     },
     {
       id: 'mac' as const,
       name: 'Mac Silicon',
       icon: <Apple className="w-6 h-6 text-white" />,
-      gradient: 'from-purple-400 to-pink-400',
-      hoverGradient: 'from-purple-500/20 to-pink-500/20',
-      hoverBorder: 'hover:border-purple-400/50',
-      textHover: 'group-hover:text-purple-300'
+      gradient: theme.classes.gradient,
+      hoverGradient: theme.classes.gradientHover,
+      hoverBorder: `hover:${theme.classes.border}`,
+      textHover: `group-${theme.classes.primaryHover}`
     },
     {
       id: 'linux' as const,
@@ -101,7 +102,7 @@ export function DownloadButton() {
       {/* Release note */}
       <div className="mt-4 p-3 bg-zinc-800/50 rounded-lg border border-zinc-700/50">
         <p className="text-sm text-zinc-400 text-center">
-          <span className="text-blue-400 font-medium">Release Date:</span> Monday, August 18th
+          <span className={`${theme.classes.primary} font-medium`}>Release Date:</span> Monday, August 18th
           <br />
           Binaries for Windows, Mac, and Linux will be available for download.
         </p>

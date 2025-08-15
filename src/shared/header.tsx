@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { usePostHog } from 'posthog-js/react';
+import theme from '../theme';
 
 interface HeaderProps {
   scrolled?: boolean;
@@ -50,8 +51,16 @@ export function Header({ scrolled = false }: HeaderProps) {
           }`}
         >
           <a
+            href={process.env.NEXT_PUBLIC_MAIN_URL}
+            className={`text-white hover:text-zinc-400 transition-colors duration-200 relative ${
+              scrolled ? "text-sm" : "text-base"
+            }`}
+          >
+            <span className="relative">About Tylt</span>
+          </a>
+          <a
             href="#download"
-            className={`text-white hover:text-orange-400 transition-colors duration-200 relative ${
+            className={`text-white hover:text-${theme.classes.primary} transition-colors duration-200 relative ${
               scrolled ? "text-sm" : "text-base"
             }`}
             onClick={handleDownloadClick}

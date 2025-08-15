@@ -2,6 +2,7 @@ import { AirbnbSlideshow } from "@/shared/airbnb-slideshow";
 // import { DemoButton } from "@/shared/demo-button";
 // import Image from "next/image";
 import { useEffect, useState, RefObject, useRef } from "react";
+import theme from '../theme';
 
 interface HeroProps {
   primaryText: string;
@@ -62,12 +63,12 @@ export function Hero({ primaryText, secondaryText, tertiaryText, description }: 
               {tertiaryText && (
                 <>
                   <br />
-                  <span className="text-blue-200">{tertiaryText}</span>
+                  <span className={`${theme.classes.accent}`}>{tertiaryText}</span>
                 </>
               )}
             </p>
             {/* Subtle accent line */}
-            <div className="absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full opacity-60 hidden lg:block"></div>
+            <div className={`absolute -left-4 top-0 bottom-0 w-1 bg-gradient-to-b ${theme.classes.gradient} rounded-full opacity-60 hidden lg:block`}></div>
           </div>
           
           {description && (
@@ -80,7 +81,7 @@ export function Hero({ primaryText, secondaryText, tertiaryText, description }: 
       <div className={`flex-1 w-full transition-all duration-700 ${showScreenshot ? 'opacity-100 scale-100' : 'opacity-40 scale-95'}`}>
         <div className="relative w-full">
           {/* Subtle glow effect behind demo - hidden on mobile */}
-          <div className="hidden sm:block absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl blur-xl transform -rotate-1"></div>
+          <div className={`hidden sm:block absolute inset-0 bg-gradient-to-r ${theme.classes.glow} rounded-2xl blur-xl transform -rotate-1`}></div>
           <div className="relative sm:bg-gradient-to-br sm:from-zinc-900/50 sm:to-zinc-800/30 sm:rounded-2xl sm:backdrop-blur-sm sm:border sm:border-zinc-700/50">
             <AirbnbSlideshow speed={3} />
           </div>

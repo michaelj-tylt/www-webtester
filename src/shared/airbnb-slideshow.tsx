@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { createPortal } from 'react-dom';
+import theme from '../theme';
 
 interface SlideData {
   slide: number;
@@ -139,7 +140,7 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
           <div
             key={index + 1}
             className={`w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full transition-colors ${
-              index + 1 === currentSlide ? 'bg-blue-400' : 'bg-zinc-600'
+              index + 1 === currentSlide ? theme.classes.accentBg : 'bg-zinc-600'
             }`}
           />
         ))}
@@ -251,14 +252,14 @@ export function AirbnbSlideshow({ speed: initialSpeed = 3 }: AirbnbSlideshowProp
           width: 16px;
           height: 16px;
           border-radius: 50%;
-          background: #60a5fa;
+          background: var(--accent-color);
           cursor: pointer;
         }
         .slider::-moz-range-thumb {
           width: 16px;
           height: 16px;
           border-radius: 50%;
-          background: #60a5fa;
+          background: var(--accent-color);
           cursor: pointer;
           border: none;
         }
