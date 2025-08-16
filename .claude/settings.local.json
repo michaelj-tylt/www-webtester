@@ -54,8 +54,12 @@
       "Bash(git rev-list:*)",
       "Bash(git branch:*)",
       "Bash(chmod:*)",
-      "WebFetch(domain:www.npmjs.com)"
+      "WebFetch(domain:www.npmjs.com)",
+      "Bash(./deploy-shared-changes.sh:*)"
     ],
-    "deny": []
+    "deny": [],
+    "additionalDirectories": [
+      "/home/ejokelly/dev/tylt/www"
+    ]
   }
 }
