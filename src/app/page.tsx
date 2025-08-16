@@ -11,7 +11,7 @@ import theme from '@/shared/themes/webtester';
 export default function HomePage() {
   return (
     <PageLayout 
-      homeUrl={process.env.NEXT_PUBLIC_MAIN_URL}
+      homeUrl="/"
       auroraColors={["#8B5CF6", "#7C3AED", "#0F172A"]}
       pixelColors="#8B5CF6,#A855F7,#7C3AED"
       theme={theme}

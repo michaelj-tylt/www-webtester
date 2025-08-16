@@ -55,7 +55,8 @@
       "Bash(git branch:*)",
       "Bash(chmod:*)",
       "WebFetch(domain:www.npmjs.com)",
-      "Bash(./deploy-shared-changes.sh:*)"
+      "Bash(./deploy-shared-changes.sh:*)",
+      "Bash(vercel inspect:*)"
     ],
     "deny": [],
     "additionalDirectories": [
