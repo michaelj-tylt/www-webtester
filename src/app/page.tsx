@@ -6,7 +6,7 @@ import { Hero } from '@/shared/hero-landing';
 // import { DemoRequestContent } from '@/shared/demo-request';
 import { FaWindows, FaApple } from 'react-icons/fa';
 import { SiLinux } from 'react-icons/si';
-import theme from '../theme';
+import theme from '@/shared/themes/webtester';
 
 export default function HomePage() {
   return (

@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/shared/*": ["./shared-components/components/*"],
+      "@/shared/themes/*": ["./shared-components/themes/*"],
       "@/lib/*": ["./shared-components/lib/*"]
     }
   },
