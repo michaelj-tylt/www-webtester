@@ -1,43 +1,22 @@
 'use client';
-import { Header } from '@/shared/header';
+import { PageLayout } from '@/shared/page-layout';
 import { Footer } from '@/shared/footer';
 import { Section } from '@/shared/section';
 import { Hero } from '@/shared/hero-landing';
 // import { DemoRequestContent } from '@/shared/demo-request';
-import PixelBackground from '@/shared/react-bits/Backgrounds/PixelBackground/PixelBackground';
-import Aurora from '@/shared/react-bits/Backgrounds/Aurora/Aurora';
 import { FaWindows, FaApple } from 'react-icons/fa';
 import { SiLinux } from 'react-icons/si';
 import theme from '../theme';
 
 export default function HomePage() {
-
   return (
-    <div className="min-h-screen w-full relative overflow-y-scroll snap-mandatory snap-y scroll-smooth" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-      {/* Background layers */}
-      <div className="fixed inset-0 z-0 bg-gradient-to-br from-[#0a0e1a] to-[#0f172a]" />
-      <div className="fixed inset-0 z-0 opacity-60">
-        <Aurora
-          colorStops={["#8B5CF6", "#7C3AED", "#0F172A"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={0.5}
-        />
-      </div>
-      <div className="fixed inset-0 z-0 opacity-25">
-        <PixelBackground
-          gap={8}
-          speed={60}
-          colors="#8B5CF6,#A855F7,#7C3AED"
-          autoStart={true}
-        />
-      </div>
-
-      {/* Header */}
-      <Header scrolled={false} />
-      
-      {/* Content */}
-      <div className="relative z-10 flex flex-col gap-24 sm:gap-32 lg:gap-0">
+    <PageLayout 
+      homeUrl={process.env.NEXT_PUBLIC_MAIN_URL}
+      auroraColors={["#8B5CF6", "#7C3AED", "#0F172A"]}
+      pixelColors="#8B5CF6,#A855F7,#7C3AED"
+      theme={theme}
+      appName="WebTester"
+    >
         {/* Page 1: Hero */}
         <div 
           className="min-h-screen w-full flex items-center justify-center relative text-white snap-start"
@@ -439,7 +418,6 @@ export default function HomePage() {
             <Footer />
           </Section>
         </div>
-      </div>
-    </div>
+    </PageLayout>
   );
 }

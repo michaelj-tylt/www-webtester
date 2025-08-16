@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+@/shared/* -> shared-components/components/*
+@/shared/* -> shared-components/components/*

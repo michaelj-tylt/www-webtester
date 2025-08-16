@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Contrail_One, Inter, Oswald } from "next/font/google";
 import "./globals.css";
-import { GoogleAnalytics } from "../shared/analytics";
-import { createMetadata, LdJsonScript } from "../shared/metadata";
+import { GoogleAnalytics } from "@/shared/analytics";
+import { createMetadata, LdJsonScript } from "@/shared/metadata";
 import { PostHogProvider } from './providers';
 
 const geistMono = Geist_Mono({
